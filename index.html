@@ -2,112 +2,143 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Página protegida</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Hola, Wind!</title>
+  <!-- Enlazamos el archivo CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilo adicional para el overlay de la contraseña -->
   <style>
-    /* Oculta el contenido por defecto */
-    #contenido {
-      display: none;
-    }
-    /* Mensaje de error oculto por defecto */
-    #mensajeError {
-      color: red;
-      display: none;
-      margin-top: 1rem;
-    }
-    /* Estilos básicos de ejemplo */
-    body {
-      font-family: sans-serif;
-      background: #f4f4f4;
+    /* Capa superpuesta que ocupa toda la pantalla */
+    #login-screen {
+      position: fixed;   /* Para que se quede fijo encima de todo */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
+      z-index: 9999; /* Por encima de cualquier contenido */
     }
-    form {
-      background: white;
+    /* Caja blanca que contiene el formulario de contraseña */
+    #login-box {
+      background: #fff;
       padding: 2rem;
       border-radius: 0.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      margin-bottom: 1rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    input[type="password"] {
-      padding: 0.5rem;
-      width: 200px;
-      margin-bottom: 1rem;
-    }
-    button {
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-    #contenido {
-      margin-top: 2rem;
-      background: white;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
+      min-width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    #login-box h1 {
+      margin-bottom: 1rem;
+    }
+    #login-box input {
+      padding: 0.5rem;
+      width: 80%;
+      margin-bottom: 1rem;
+    }
+    #login-box button {
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.3rem;
+      background-color: #007BFF;
+      color: white;
+      font-size: 1rem;
+    }
+    #error-message {
+      display: none;
+      color: red;
+      margin-top: 0.5rem;
+    }
+
+    /* Por defecto, ocultamos el contenido real de la página */
+    body.protegido #page-content {
+      display: none;
+    }
+
+    /* Cuando la contraseña es correcta, ocultamos el overlay
+       y mostramos el contenido real */
+    body.desbloqueado #login-screen {
+      display: none;
+    }
+    body.desbloqueado #page-content {
+      display: block;
     }
   </style>
 </head>
-<body>
+<body class="protegido"><!-- Clase "protegido" para ocultar contenido hasta loguear -->
 
-  <h1>Página protegida</h1>
-
-  <!-- Formulario para ingresar la contraseña -->
-  <form id="loginForm">
-    <label for="pwd">Introduce la contraseña:</label>
-    <input 
-      type="password" 
-      id="pwd" 
-      name="pwd" 
-      required
-      placeholder="Contraseña"
-    />
-    <button type="submit">Acceder</button>
-
-    <!-- Mensaje de error si es incorrecta -->
-    <div id="mensajeError">Contraseña incorrecta.</div>
-  </form>
-
-  <!-- Contenido que estará oculto hasta poner la contraseña correcta -->
-  <div id="contenido">
-    <h2>¡Contenido Secreto!</h2>
-    <p>Solo aparece si la contraseña ("Egozkue13.") es correcta.</p>
+  <!-- Overlay de contraseña -->
+  <div id="login-screen">
+    <div id="login-box">
+      <h1>Acceder</h1>
+      <input 
+        type="password"
+        id="password-input"
+        placeholder="Contraseña"
+      >
+      <br>
+      <button id="btn-login">Entrar</button>
+      <div id="error-message">Contraseña incorrecta</div>
+    </div>
   </div>
 
-  <script>
-    // Referencias a elementos del DOM
-    const loginForm = document.getElementById("loginForm");
-    const pwdInput = document.getElementById("pwd");
-    const mensajeError = document.getElementById("mensajeError");
-    const contenido = document.getElementById("contenido");
+  <!-- Contenido real de la página -->
+  <div id="page-content">
+    <!-- Barra de navegación (o encabezado) -->
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="momentos.html">Momentos bonitos</a></li>
+        </ul>
+        <!-- Contador en la parte superior (aparece en todas las páginas) -->
+        <div id="countdown">Cargando...</div>
+      </nav>
+    </header>
 
+    <!-- Sección principal -->
+    <main>
+      <h1>¡Bienvenido a la página de Wind!</h1>
+      <p>Esta web está dedicada a mi mejor amigo <strong>Wind</strong>. Aquí encontrarás momentos inolvidables, historias y el contador que marca la cuenta atrás hasta el <em>15 de enero de 2024 a las 23:11</em>.</p>
+      <p>¡Disfruta de esta pequeña dedicación hecha con mucho cariño!</p>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+      <p>© 2025. ¡Hecho con amor y dedicación para Wind!</p>
+    </footer>
+  </div>
+
+  <!-- Script de la contraseña (del lado del cliente) -->
+  <script>
     // Contraseña correcta
     const CORRECT_PASSWORD = "Egozkue13.";
 
-    // Evento al enviar el formulario
-    loginForm.addEventListener("submit", function(event) {
-      event.preventDefault(); // Evita recargar la página
+    // Referencias a elementos
+    const passwordInput = document.getElementById("password-input");
+    const btnLogin = document.getElementById("btn-login");
+    const errorMsg = document.getElementById("error-message");
 
-      // Compara la contraseña ingresada con la correcta
-      if (pwdInput.value === CORRECT_PASSWORD) {
-        // Oculta el mensaje de error, muestra el contenido
-        mensajeError.style.display = "none";
-        contenido.style.display = "block";
+    // Al hacer clic en "Entrar"
+    btnLogin.addEventListener("click", function() {
+      const enteredPassword = passwordInput.value.trim();
+
+      if (enteredPassword === CORRECT_PASSWORD) {
+        // Cambiamos la clase del body a "desbloqueado" para ocultar el overlay y mostrar el contenido
+        document.body.classList.remove("protegido");
+        document.body.classList.add("desbloqueado");
       } else {
-        // Muestra el mensaje de error, oculta el contenido
-        mensajeError.style.display = "block";
-        contenido.style.display = "none";
+        // Mostramos el mensaje de error
+        errorMsg.style.display = "block";
       }
     });
   </script>
+
+  <!-- Enlazamos el archivo JavaScript del contador -->
+  <script src="script.js"></script>
 </body>
 </html>
