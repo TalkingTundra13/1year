@@ -1,85 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>1 Año de Amistad</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!-- Fuente Decorativa (Títulos) -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+  <!-- Fuente Principal -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Hoja de Estilos -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Encabezado -->
-  <header>
-    <h1>¡Celebrando un año de amistad!</h1>
-    <p>Gracias por estos 365 días de risas, aventuras y complicidad</p>
+  <!-- Hero con Parallax -->
+  <header class="hero">
+    <div class="overlay">
+      <h1>¡Un año de amistad!</h1>
+      <p>Celebrando 365 días de risas, complicidad y grandes momentos</p>
+      <a href="#contenido" class="btn-hero">Ver recuerdos</a>
+    </div>
   </header>
 
-  <!-- Mensaje principal -->
-  <section class="dedicatoria">
-    <h2>¡Gracias por todo!</h2>
+  <!-- Sección de Dedicatoria -->
+  <section class="dedicatoria" id="contenido">
+    <h2>Un Mensaje Muy Especial</h2>
     <p>
-      Este año junto a ti ha sido increíble, lleno de aventuras, risas 
-      y aprendizajes. Gracias por estar ahí en cada momento 
-      y por hacer que cada día sea único. ¡Por muchos años más!
+      Un año puede parecer poco tiempo, pero cuando se trata de verdadera amistad, 
+      cada día está lleno de historias, aventuras y momentos inolvidables. 
+      Gracias por todos estos instantes compartidos.
     </p>
   </section>
 
-  <!-- Galería de recuerdos -->
+  <!-- Sección Galería (Masonry) -->
   <section class="galeria">
-    <h2>Nuestros momentos favoritos</h2>
-    <div class="imagenes">
-      <figure>
-        <img src="foto1.jpg" alt="Recuerdo 1">
-        <figcaption>Descripción o anécdota divertida</figcaption>
-      </figure>
-      <figure>
-        <img src="foto2.jpg" alt="Recuerdo 2">
-        <figcaption>Descripción o anécdota divertida</figcaption>
-      </figure>
-      <!-- Agrega más fotos según desees -->
+    <h2>Nuestros Momentos</h2>
+    <div class="grid-masonry">
+      <!-- Tarjetas de imagen -->
+      <div class="masonry-item">
+        <img src="img/foto1.jpg" alt="Recuerdo 1">
+        <div class="masonry-info">
+          <h3>Recuerdo #1</h3>
+          <p>¡Este día fue inolvidable!</p>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <img src="img/foto2.jpg" alt="Recuerdo 2">
+        <div class="masonry-info">
+          <h3>Recuerdo #2</h3>
+          <p>Siempre riendo juntos</p>
+        </div>
+      </div>
+      <!-- Agrega más tarjetas según quieras -->
     </div>
   </section>
 
-  <!-- Línea de tiempo -->
+  <!-- Sección Línea de tiempo -->
   <section class="timeline">
-    <h2>Línea de tiempo</h2>
+    <h2>Línea de Tiempo</h2>
     <ul>
-      <li><strong>Enero:</strong> Nuestro primer viaje juntos</li>
-      <li><strong>Marzo:</strong> Fiesta sorpresa de cumpleaños</li>
-      <li><strong>Junio:</strong> Concierto inolvidable</li>
-      <!-- Agrega más eventos -->
+      <li>
+        <div class="time-card">
+          <h4>Enero</h4>
+          <p>Nuestro primer viaje juntos</p>
+        </div>
+      </li>
+      <li>
+        <div class="time-card">
+          <h4>Marzo</h4>
+          <p>Tu fiesta de cumpleaños sorpresa</p>
+        </div>
+      </li>
+      <li>
+        <div class="time-card">
+          <h4>Junio</h4>
+          <p>Concierto inolvidable</p>
+        </div>
+      </li>
+      <!-- Agrega más momentos -->
     </ul>
   </section>
 
-  <!-- Frases o citas sobre la amistad -->
-  <section class="citas">
-    <h2>Sobre la amistad</h2>
-    <blockquote>
-      "La amistad duplica las alegrías y divide las angustias por la mitad." 
-      <cite>- Francis Bacon</cite>
-    </blockquote>
-    <blockquote>
-      "La amistad es un alma que habita en dos cuerpos; un corazón que habita en dos almas."
-      <cite>- Aristóteles</cite>
-    </blockquote>
-  </section>
-
-  <!-- Agradecimientos y mensajes -->
+  <!-- Sección Mensajes -->
   <section class="mensajes">
-    <h2>¡Deja tu mensaje!</h2>
-    <form action="#" method="POST">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" required>
+    <h2>Deja tu Mensaje</h2>
+    <form>
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
 
-      <label for="comentario">Tu mensaje:</label>
-      <textarea id="comentario" name="comentario" rows="4" required></textarea>
+      <label for="comentario">Tu Mensaje</label>
+      <textarea id="comentario" rows="3" placeholder="Escribe algo especial..." required></textarea>
 
       <button type="submit">Enviar</button>
     </form>
   </section>
 
-  <!-- Pie de página -->
+  <!-- Sección Cita o Frase Final -->
+  <section class="frase-final">
+    <blockquote>
+      “La amistad es el ingrediente más importante en la receta de la vida.”
+      <cite>- Anónimo</cite>
+    </blockquote>
+  </section>
+
+  <!-- Pie de Página -->
   <footer>
-    <p>Creado con mucho cariño por [Tu Nombre]. Enero 2025</p>
+    <p>Hecho con mucho cariño por [Tu Nombre]. © 2025</p>
   </footer>
 </body>
 </html>
