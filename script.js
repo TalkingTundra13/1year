@@ -1,29 +1,24 @@
-// Fecha objetivo: 15 de enero de 2024 a las 23:11
-const targetDate = new Date("January 15, 2024 23:11:00").getTime();
+// Fecha objetivo en formato ISO (15 enero 2024, 23:11)
+const targetDate = new Date("2024-01-15T23:11:00").getTime();
 
+// Función que actualiza el contador
 function updateCountdown() {
   const now = new Date().getTime();
   const distance = targetDate - now;
 
-  // Cálculo de días, horas, minutos y segundos
+  // Calcular días, horas, minutos y segundos
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor(
-    (distance % (1000 * 60 * 60)) / (1000 * 60)
-  );
-  const seconds = Math.floor(
-    (distance % (1000 * 60)) / 1000
-  );
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+  // Seleccionar elemento del DOM
   const countdownElement = document.getElementById("countdown");
 
+  // Comprobar si la fecha ya pasó
   if (distance < 0) {
-    // Si se supera la fecha objetivo
     countdownElement.innerHTML = "¡La fecha llegó!";
   } else {
-    // Mostrar la cuenta regresiva
     countdownElement.innerHTML = `
       Faltan 
       <strong>${days}</strong>d 
@@ -35,8 +30,8 @@ function updateCountdown() {
   }
 }
 
-// Actualiza el contador cada segundo
+// Actualizamos cada segundo
 setInterval(updateCountdown, 1000);
 
-// Llamada inicial para que aparezca al cargar la página
+// Llamada inicial para que muestre el contador al cargar
 updateCountdown();
