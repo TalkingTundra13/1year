@@ -2,29 +2,33 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Hola, Wind!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Página de Wind</title>
   <!-- Enlazamos el archivo CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Barra de navegación (o encabezado) -->
+  <!-- Encabezado con navegación -->
   <header>
     <nav>
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="momentos.html">Momentos bonitos</a></li>
       </ul>
-      <!-- Contador en la parte superior (aparece en todas las páginas) -->
+      <!-- Contador (lo importante es que tenga el mismo id del script) -->
       <div id="countdown">Cargando...</div>
     </nav>
   </header>
 
-  <!-- Sección principal -->
+  <!-- Contenido principal -->
   <main>
     <h1>¡Bienvenido a la página de Wind!</h1>
-    <p>Esta web está dedicada a mi mejor amigo <strong>Wind</strong>. Aquí encontrarás momentos inolvidables, historias y el contador que marca la cuenta atrás hasta el <em>15 de enero de 2024 a las 23:11</em>.</p>
+    <p>
+      Esta web está dedicada a mi mejor amigo <strong>Wind</strong>.  
+      Aquí encontrarás momentos inolvidables, historias y un contador  
+      que marca la cuenta atrás hasta el <em>15 de enero de 2024 a las 23:11</em>. 
+    </p>
     <p>¡Disfruta de esta pequeña dedicación hecha con mucho cariño!</p>
   </main>
 
@@ -33,7 +37,7 @@
     <p>© 2025. ¡Hecho con amor y dedicación para Wind!</p>
   </footer>
 
-  <!-- Enlazamos el archivo JavaScript -->
+  <!-- Enlazamos el JavaScript al final, para que el DOM ya esté cargado -->
   <script src="script.js"></script>
 </body>
 </html>
