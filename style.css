@@ -1,20 +1,21 @@
-/* Estilos generales */
+/* Reset y box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Cuerpo con degradado */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  background: linear-gradient(to right, #c2e59c, #64b3f4); /* Degradado suave */
+  background: linear-gradient(to right, #c2e59c, #64b3f4);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: #333;
 }
 
-/* Encabezado y navegación */
+/* Cabecera y navegación */
 header {
   background: rgba(255, 255, 255, 0.8);
   border-bottom: 2px solid #fff;
@@ -28,13 +29,9 @@ nav {
 }
 
 nav ul {
-  list-style-type: none;
+  list-style: none;
   display: flex;
   gap: 1rem;
-}
-
-nav li {
-  position: relative;
 }
 
 nav a {
@@ -57,16 +54,16 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* Sección principal */
+/* Contenido principal */
 main {
   flex: 1;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
   margin: 1rem;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 1rem;
 }
 
-/* Momentos bonitos */
+/* Sección de momentos */
 .momentos {
   display: grid;
   gap: 2rem;
