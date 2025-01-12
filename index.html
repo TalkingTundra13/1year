@@ -2,42 +2,82 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Página de Wind</title>
-  <!-- Enlazamos el archivo CSS -->
-  <link rel="stylesheet" href="style.css">
+  <title>Tiempo transcurrido</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(to right, #c2e59c, #64b3f4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    #elapsed {
+      font-size: 1.2rem;
+      background: #fff;
+      color: #e74c3c;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
+  <h1>Tiempo transcurrido desde el 15/01/2024 - 23:11</h1>
+  <div id="elapsed">Cargando...</div>
 
-  <!-- Encabezado con navegación -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="momentos.html">Momentos bonitos</a></li>
-      </ul>
-      <!-- Contador (lo importante es que tenga el mismo id del script) -->
-      <div id="countdown">Cargando...</div>
-    </nav>
-  </header>
+  <script>
+    // Fecha objetivo: 15 de enero de 2024, 23:11
+    // Formato ISO -> "2024-01-15T23:11:00"
+    const startDate = new Date("2024-01-15T23:11:00").getTime();
 
-  <!-- Contenido principal -->
-  <main>
-    <h1>¡Bienvenido a la página de Wind!</h1>
-    <p>
-      Esta web está dedicada a mi mejor amigo <strong>Wind</strong>.  
-      Aquí encontrarás momentos inolvidables, historias y un contador  
-      que marca la cuenta atrás hasta el <em>15 de enero de 2024 a las 23:11</em>. 
-    </p>
-    <p>¡Disfruta de esta pequeña dedicación hecha con mucho cariño!</p>
-  </main>
+    function updateElapsed() {
+      const now = new Date().getTime();
+      const distance = now - startDate; 
+      // Si distance es negativo, significa que aún falta para esa fecha
+      const elapsedElement = document.getElementById("elapsed");
 
-  <!-- Pie de página -->
-  <footer>
-    <p>© 2025. ¡Hecho con amor y dedicación para Wind!</p>
-  </footer>
+      if (distance < 0) {
+        elapsedElement.innerHTML = "La fecha aún no ha llegado.";
+        return;
+      }
 
-  <!-- Enlazamos el JavaScript al final, para que el DOM ya esté cargado -->
-  <script src="script.js"></script>
+      // Calcular días, horas, minutos y segundos que han pasado
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+      );
+
+      // Mostramos cuánto tiempo ha transcurrido
+      elapsedElement.innerHTML = `
+        Han pasado 
+        <strong>${days}</strong> días, 
+        <strong>${hours}</strong> horas, 
+        <strong>${minutes}</strong> minutos, 
+        <strong>${seconds}</strong> segundos 
+        desde el 15/01/2024 a las 23:11.
+      `;
+    }
+
+    // Actualizar cada segundo
+    setInterval(updateElapsed, 1000);
+    // Llamada inicial
+    updateElapsed();
+  </script>
 </body>
 </html>
