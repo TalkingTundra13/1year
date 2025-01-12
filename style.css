@@ -1,0 +1,94 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: linear-gradient(to right, #c2e59c, #64b3f4); /* Degradado suave */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Encabezado y navegación */
+header {
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid #fff;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #2980b9;
+}
+
+/* Contador */
+#countdown {
+  background: #fff;
+  color: #e74c3c;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+/* Sección principal */
+main {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+/* Momentos bonitos */
+.momentos {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.momentos article {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.momentos h2 {
+  margin-bottom: 0.5rem;
+  color: #e67e22;
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-top: 2px solid #fff;
+}
