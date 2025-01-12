@@ -3,27 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Contador de tiempo transcurrido</title>
+  <!-- Estilos (puedes ponerlos en tu styles.css si lo prefieres) -->
   <style>
-    /* Estilos básicos, ajusta a tu gusto */
-    .contador-container {
-      background-color: #ccc;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      width: 80%;
-      margin: 2rem auto;
+    /* Reseteo básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .contador-container h1 {
-      font-family: 'Pacifico', cursive; /* o la fuente que uses */
-      font-size: 2rem;
-      color: #fff;
+    
+    body {
+      font-family: "Poppins", sans-serif; /* O la fuente que uses */
+      background: #fafafa;  /* Fondo general de la página */
+      color: #333;
+    }
+
+    /****************************************
+      HERO CONTENEDOR
+    ****************************************/
+    .hero {
+      /* Alto mínimo para que sea grande y cubra un buen espacio */
+      min-height: 40vh;
+      background-color: #444; /* Fondo oscuro */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      /* Si quieres que ocupe todo el ancho sin límite, quita max-width */
+    }
+
+    /* Contenedor interno de la hero */
+    .hero-content {
+      max-width: 1200px;
+      width: 90%;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.2); /* Un leve overlay para separar el texto */
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+
+    .hero-content h1 {
+      font-family: 'Pacifico', cursive; /* Fuente decorativa si deseas */
+      font-size: 3rem;                  /* Más grande */
+      color: #fff;                      /* Texto claro */
       margin-bottom: 1rem;
     }
-    .contador-info {
-      font-size: 1.2rem;
+
+    .hero-content p {
+      font-size: 1.3rem;
       color: #fff;
+      margin-bottom: 1.5rem;
     }
-    /* Un poquito de rosa para el botón, si lo necesitas */
+
     .btn-hero {
       display: inline-block;
       padding: 0.8rem 1.2rem;
@@ -31,80 +62,93 @@
       color: #fff;
       border: none;
       border-radius: 4px;
-      margin-top: 1rem;
       text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      margin-bottom: 2rem;
+    }
+    .btn-hero:hover {
+      background-color: #ff577f;
+    }
+
+    /****************************************
+      CONTADOR
+    ****************************************/
+    /* Texto del contador */
+    #contador-tiempo {
+      font-size: 1.4rem;  /* Más grande */
+      color: #f8f8f8;     /* Texto claro */
+      margin-top: 1.5rem;
+    }
+
+    /****************************************
+      SECCIÓN DE CONTENIDO
+    ****************************************/
+    section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
   </style>
 </head>
 <body>
 
-<!-- Aquí tu sección “hero” o la tarjeta gris -->
-<div class="contador-container">
-  <h1>¡Un año de amistad!</h1>
-  <p class="contador-info">
-    Celebrando 365 días de risas, complicidad y grandes momentos
-  </p>
-  
-  <!-- Botón o enlace, si lo necesitas -->
-  <a href="#contenido" class="btn-hero">Ver recuerdos</a>
-  
-  <!-- Contador de tiempo transcurrido desde 15 de enero a las 23:11 -->
-  <p id="contador-tiempo" class="contador-info" style="margin-top:1.5rem;">
-    <!-- Se irá llenando con JS -->
-  </p>
-</div>
+<!-- HERO con fondo oscuro -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>¡Un año de amistad!</h1>
+    <p>Celebrando 365 días de risas, complicidad y grandes momentos</p>
+    <a href="#contenido" class="btn-hero">Ver recuerdos</a>
+    <!-- Contador de tiempo transcurrido -->
+    <p id="contador-tiempo">
+      <!-- Se rellena por JavaScript -->
+    </p>
+  </div>
+</header>
 
-<!-- Aquí el resto de tu contenido -->
+<!-- Sección de contenido adicional -->
 <section id="contenido">
-  <!-- tu contenido de recuerdos, fotos, etc. -->
+  <!-- Aquí pones tus fotos, textos, etc. -->
+  <p>
+    Más adelante, tu galería, dedicatorias o lo que desees.
+  </p>
 </section>
 
-<!-- Scripts -->
 <script>
-  // Ajusta la fecha/hora de inicio a la que desees (ojo con el año).
-  // Por ejemplo, si fue el 15 de enero de 2025 a las 23:11:
-  const fechaInicio = new Date('January 15, 2025 23:11:00');
-
-  // Elemento donde se mostrará el contador
+  // Fecha de inicio: 15 de enero de 2024, a las 23:11
+  const fechaInicio = new Date('January 15, 2024 23:11:00');
+  
   const contadorElemento = document.getElementById('contador-tiempo');
 
-  // Función para actualizar el contador cada segundo
   function actualizarContador() {
     const ahora = new Date();
-    // Diferencia en milisegundos
-    const diferenciaMs = ahora - fechaInicio;
-    
-    // Si la fechaInicio es futura, podríamos mostrar "Aún no ha pasado la fecha", etc.
-    // Pero en este caso asumimos que ya ha pasado.
-    
-    // Convierte la diferencia a días, horas, minutos y segundos
+    const diferenciaMs = ahora - fechaInicio;  
+
+    // Convertir a días, horas, minutos y segundos
     const segTotal = Math.floor(diferenciaMs / 1000);
-    const dias = Math.floor(segTotal / 86400);        // 86400 seg en un día
-    const horasRestantes = segTotal % 86400;          // segundos restantes tras quitar días
+    const dias = Math.floor(segTotal / 86400);
+    const horasRestantes = segTotal % 86400;
     const horas = Math.floor(horasRestantes / 3600);
     const minRestantes = horasRestantes % 3600;
     const minutos = Math.floor(minRestantes / 60);
     const segundos = minRestantes % 60;
-    
-    // Crea una cadena bonita para mostrar
-    // Ajusta el texto a tu gusto (dias, horas, etc.)
+
+    // Crea la cadena de texto
     const textoContador = `
       Han pasado 
       <strong>${dias}</strong> días, 
       <strong>${horas}</strong> horas, 
       <strong>${minutos}</strong> minutos 
       y <strong>${segundos}</strong> segundos 
-      desde el 15 de enero a las 23:11.
+      desde el 15 de enero de 2024 a las 23:11.
     `;
     
-    // Inyecta el texto en el párrafo
     contadorElemento.innerHTML = textoContador;
   }
 
-  // Llama a la función al cargar la página
+  // Primera llamada
   actualizarContador();
-  
-  // Vuelve a actualizar cada segundo
+  // Actualiza cada segundo
   setInterval(actualizarContador, 1000);
 </script>
 </body>
