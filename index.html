@@ -2,38 +2,112 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Hola, Wind!</title>
-  <!-- Enlazamos el archivo CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <title>Página protegida</title>
+  <style>
+    /* Oculta el contenido por defecto */
+    #contenido {
+      display: none;
+    }
+    /* Mensaje de error oculto por defecto */
+    #mensajeError {
+      color: red;
+      display: none;
+      margin-top: 1rem;
+    }
+    /* Estilos básicos de ejemplo */
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    input[type="password"] {
+      padding: 0.5rem;
+      width: 200px;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    #contenido {
+      margin-top: 2rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Barra de navegación (o encabezado) -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="momentos.html">Momentos bonitos</a></li>
-      </ul>
-      <!-- Contador en la parte superior (aparece en todas las páginas) -->
-      <div id="countdown">Cargando...</div>
-    </nav>
-  </header>
+  <h1>Página protegida</h1>
 
-  <!-- Sección principal -->
-  <main>
-    <h1>¡Bienvenido a la página de Wind!</h1>
-    <p>Esta web está dedicada a mi mejor amigo <strong>Wind</strong>. Aquí encontrarás momentos inolvidables, historias y el contador que marca la cuenta atrás hasta el <em>15 de enero de 2024 a las 23:11</em>.</p>
-    <p>¡Disfruta de esta pequeña dedicación hecha con mucho cariño!</p>
-  </main>
+  <!-- Formulario para ingresar la contraseña -->
+  <form id="loginForm">
+    <label for="pwd">Introduce la contraseña:</label>
+    <input 
+      type="password" 
+      id="pwd" 
+      name="pwd" 
+      required
+      placeholder="Contraseña"
+    />
+    <button type="submit">Acceder</button>
 
-  <!-- Pie de página -->
-  <footer>
-    <p>© 2025. ¡Hecho con amor y dedicación para Wind!</p>
-  </footer>
+    <!-- Mensaje de error si es incorrecta -->
+    <div id="mensajeError">Contraseña incorrecta.</div>
+  </form>
 
-  <!-- Enlazamos el archivo JavaScript -->
-  <script src="script.js"></script>
+  <!-- Contenido que estará oculto hasta poner la contraseña correcta -->
+  <div id="contenido">
+    <h2>¡Contenido Secreto!</h2>
+    <p>Solo aparece si la contraseña ("Egozkue13.") es correcta.</p>
+  </div>
+
+  <script>
+    // Referencias a elementos del DOM
+    const loginForm = document.getElementById("loginForm");
+    const pwdInput = document.getElementById("pwd");
+    const mensajeError = document.getElementById("mensajeError");
+    const contenido = document.getElementById("contenido");
+
+    // Contraseña correcta
+    const CORRECT_PASSWORD = "Egozkue13.";
+
+    // Evento al enviar el formulario
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault(); // Evita recargar la página
+
+      // Compara la contraseña ingresada con la correcta
+      if (pwdInput.value === CORRECT_PASSWORD) {
+        // Oculta el mensaje de error, muestra el contenido
+        mensajeError.style.display = "none";
+        contenido.style.display = "block";
+      } else {
+        // Muestra el mensaje de error, oculta el contenido
+        mensajeError.style.display = "block";
+        contenido.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
